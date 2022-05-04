@@ -1,0 +1,165 @@
+{
+	"name": "PL_SOURCE_2_AAS",
+	"properties": {
+		"activities": [
+			{
+				"name": "PL_RAW_2_STAGE",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "PL_SOURCE_2_RAW",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "PL_RAW_2_STAGE",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"EnableNotifications": {
+							"value": "@pipeline().parameters.EnableNotifications",
+							"type": "Expression"
+						},
+						"SendEmailNotificationAddress": {
+							"value": "@pipeline().parameters.SendEmailNotificationAddress",
+							"type": "Expression"
+						}
+					}
+				}
+			},
+			{
+				"name": "PL_MDW_2_ASQL",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "PL_STAGE_2_MDW",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "PL_MDW_2_ASQL",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"EnableNotifications": {
+							"value": "@pipeline().parameters.EnableNotifications",
+							"type": "Expression"
+						},
+						"SendEmailNotificationAddress": {
+							"value": "@pipeline().parameters.SendEmailNotificationAddress",
+							"type": "Expression"
+						}
+					}
+				}
+			},
+			{
+				"name": "PL_ASQL_2_AAS",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "PL_MDW_2_ASQL",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "PL_PROCESS_AAS",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"EnableNotifications": {
+							"value": "@pipeline().parameters.EnableNotifications",
+							"type": "Expression"
+						},
+						"SendEmailNotificationAddress": {
+							"value": "@pipeline().parameters.SendEmailNotificationAddress",
+							"type": "Expression"
+						}
+					}
+				}
+			},
+			{
+				"name": "PL_SOURCE_2_RAW",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "PL_SOURCE_2_RAW_ALL",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"EnableNotifications": {
+							"value": "@pipeline().parameters.EnableNotifications",
+							"type": "Expression"
+						},
+						"SendEmailNotificationAddress": {
+							"value": "@pipeline().parameters.SendEmailNotificationAddress",
+							"type": "Expression"
+						}
+					}
+				}
+			},
+			{
+				"name": "PL_STAGE_2_MDW",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "PL_RAW_2_STAGE",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "PL_STAGE_2_MDW_PARENT",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"EnableNotifications": {
+							"value": "@pipeline().parameters.EnableNotifications",
+							"type": "Expression"
+						},
+						"SendEmailNotificationAddress": {
+							"value": "@pipeline().parameters.SendEmailNotificationAddress",
+							"type": "Expression"
+						}
+					}
+				}
+			}
+		],
+		"parameters": {
+			"EnableNotifications": {
+				"type": "string",
+				"defaultValue": "true"
+			},
+			"SendEmailNotificationAddress": {
+				"type": "string"
+			}
+		},
+		"folder": {
+			"name": "001_SCHEDULED_PIPELINES"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-05-02T14:42:32Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

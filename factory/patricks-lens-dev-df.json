@@ -1,0 +1,9 @@
+{
+	"name": "patricks-lens-dev-df",
+	"location": "westus2",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "9be0d583-9a7f-4320-ab0f-c3ab26769c05",
+		"tenantId": "ada8b199-c07c-4596-ba92-bbcea977b591"
+	}
+}

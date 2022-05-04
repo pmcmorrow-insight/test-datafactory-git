@@ -1,0 +1,27 @@
+{
+	"name": "LS_ASQL_SQL_AUTH",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"type": "AzureSqlDatabase",
+		"typeProperties": {
+			"connectionString": {
+				"secretName": {
+					"type": "Expression",
+					"value": "@linkedService().LS_ASQL_SQL_AUTH_CONN_SECRET"
+				},
+				"store": {
+					"referenceName": "LS_KEY_VAULT",
+					"type": "LinkedServiceReference"
+				},
+				"type": "AzureKeyVaultSecret"
+			}
+		},
+		"parameters": {
+			"LS_ASQL_SQL_AUTH_CONN_SECRET": {
+				"type": "string",
+				"defaultValue": "sec-mdw-db-connection-string"
+			}
+		},
+		"annotations": []
+	}
+}

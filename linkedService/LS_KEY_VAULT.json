@@ -1,0 +1,11 @@
+{
+	"name": "LS_KEY_VAULT",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"type": "AzureKeyVault",
+		"typeProperties": {
+			"baseUrl": "https://patricks-lens-dev-kv.vault.azure.net/"
+		},
+		"annotations": []
+	}
+}

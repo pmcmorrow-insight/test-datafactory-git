@@ -1,0 +1,35 @@
+{
+	"name": "PL_SOURCE_2_RAW_ALL",
+	"properties": {
+		"activities": [
+			{
+				"name": "EXECUTE_SOURCE_2_RAW_SQL",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "PL_SOURCE_2_RAW_ASQL_FULL",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			}
+		],
+		"parameters": {
+			"EnableNotifications": {
+				"type": "string",
+				"defaultValue": "true"
+			},
+			"SendEmailNotificationAddress": {
+				"type": "string"
+			}
+		},
+		"folder": {
+			"name": "001_SCHEDULED_PIPELINES/SOURCE_2_RAW"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-05-02T14:42:32Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}
