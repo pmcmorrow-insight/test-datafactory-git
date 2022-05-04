@@ -1,0 +1,18 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "patricks-lens-dev-df"
+		},
+		"LS_ADLS_properties_typeProperties_url": {
+			"value": "https://dilensdevsa.dfs.core.windows.net/"
+		},
+		"LS_ASQL_SQL_AUTH_properties_typeProperties_connectionString_secretName": {
+			"value": "@linkedService().LS_ASQL_SQL_AUTH_CONN_SECRET"
+		},
+		"LS_KEY_VAULT_properties_typeProperties_baseUrl": {
+			"value": "https://patricks-lens-dev-kv.vault.azure.net/"
+		}
+	}
+}
