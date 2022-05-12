@@ -1,0 +1,9 @@
+{
+	"name": "patricks-lens-dev-df",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "8d0c4039-0029-474e-9c78-e733b417dba3",
+		"tenantId": "ada8b199-c07c-4596-ba92-bbcea977b591"
+	}
+}
